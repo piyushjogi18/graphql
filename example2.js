@@ -53,6 +53,13 @@ const schema = new GraphQLSchema({
                 type : new GraphQLList(BookType),
                 resolve : () => books
             },
+            book : {
+               type : BookType,
+               args : {
+                     id : { type : GraphQLInt }
+                },
+               resolve : (parent,args) => books.find(book=>book.id===args.id)
+            },
             authors : {
                 type : new GraphQLList(AuthorType),
                 resolve : () => authors
